@@ -6,7 +6,6 @@ import com.com.online.store.online.store.util.GlobalValidations;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -23,7 +22,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    private void saveUser(@Valid @RequestBody UserDto userDto, BindingResult result) {
+    public void saveUser(@Valid @RequestBody UserDto userDto, BindingResult result) {
        if(result.hasErrors()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, GlobalValidations.formatMessage(result));
        userService.saveUser(userDto.toEntity());
     }

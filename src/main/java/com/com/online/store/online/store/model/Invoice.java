@@ -1,18 +1,17 @@
 package com.com.online.store.online.store.model;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.io.Serializable;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Random;
+
 
 @Entity
 @NoArgsConstructor
@@ -20,7 +19,7 @@ import java.util.Random;
 @Table(name = "TDT_INVOICE")
 public class Invoice implements Serializable {
 
-    public static final long serialVersionUID = new Random().nextLong() + 1;
+    private static final long serialVersionUID = new SecureRandom().nextLong() + 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

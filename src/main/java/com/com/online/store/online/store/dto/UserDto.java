@@ -4,24 +4,12 @@ import com.com.online.store.online.store.model.City;
 import com.com.online.store.online.store.model.Country;
 import com.com.online.store.online.store.model.User;
 import com.com.online.store.online.store.model.validation.Password;
-import com.com.online.store.online.store.util.ErrorMessage;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.validation.BindingResult;
-
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-import static java.util.Optional.empty;
-import static java.util.Optional.of;
 
 @Data
 @RequiredArgsConstructor

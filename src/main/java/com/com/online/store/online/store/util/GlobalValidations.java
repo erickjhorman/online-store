@@ -2,13 +2,14 @@ package com.com.online.store.online.store.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.NoArgsConstructor;
 import org.springframework.validation.BindingResult;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
+@NoArgsConstructor
 public class GlobalValidations {
 
     public static String formatMessage(BindingResult result) {

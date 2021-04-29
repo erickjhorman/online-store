@@ -2,11 +2,7 @@ package com.com.online.store.online.store.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
-
-import javax.persistence.Column;
 import javax.validation.constraints.Future;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import java.time.LocalDateTime;
 

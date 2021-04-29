@@ -9,12 +9,11 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.io.Serializable;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Random;
+
 
 @Entity
 @Data
@@ -24,7 +23,7 @@ import java.util.Random;
 @Builder
 public class SubProduct implements Serializable {
 
-    private static final long serialVersionUID = new Random().nextLong() + 1;
+    private static final long serialVersionUID = new SecureRandom().nextLong() + 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

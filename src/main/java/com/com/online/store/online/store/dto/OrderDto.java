@@ -2,20 +2,17 @@ package com.com.online.store.online.store.dto;
 
 import com.com.online.store.online.store.model.Order;
 import com.com.online.store.online.store.model.Product;
-import com.com.online.store.online.store.model.SubProduct;
 import com.com.online.store.online.store.model.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Positive;
+
 import java.time.LocalDateTime;
-import java.util.Currency;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,9 +29,6 @@ public class OrderDto {
 
     @NotNull(message = "{order.productId}")
     private List<ProductDto> productId;
-
-    @NotNull(message = "{payment.notnull}")
-    private PaymentDto payment;
 
     @NotNull(message = "{order.userId}")
     private User userId;

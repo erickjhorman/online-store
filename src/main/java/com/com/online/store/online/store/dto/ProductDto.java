@@ -1,20 +1,13 @@
 package com.com.online.store.online.store.dto;
 
-import com.com.online.store.online.store.model.City;
-import com.com.online.store.online.store.model.Country;
-import com.com.online.store.online.store.model.SubProduct;
 import com.com.online.store.online.store.model.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
-
-
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Getter
 @Setter

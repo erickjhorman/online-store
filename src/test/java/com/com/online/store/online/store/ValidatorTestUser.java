@@ -19,7 +19,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ValidatorTestUser {
+ class ValidatorTestUser {
 
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
@@ -48,7 +48,7 @@ public class ValidatorTestUser {
 
     @Test
     @DisplayName("Should validate empty & Null values")
-    public void testNotEmpty() {
+     void testNotEmpty() {
         Set<ConstraintViolation<User>> violations = validator.validate(new User());
         assertEquals(5, violations.size());
         violations.forEach(v -> System.out.println(
@@ -57,11 +57,11 @@ public class ValidatorTestUser {
 
     @Test
     @DisplayName("Should Validate The Email")
-    public void testEmail() {
+     void testEmail() {
         User user = userObj();
         user.setEmail("mail.com");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
-        assertEquals(user.getEmail(), "mail.com");
+        assertEquals("mail.com",user.getEmail());
     }
 
     private User userObj() {
@@ -77,7 +77,7 @@ public class ValidatorTestUser {
     }
 
     @Test
-    public void testDefaultLanguage() {
+     void testDefaultLanguage() {
         Locale.setDefault(Locale.ENGLISH);
         ResourceBundle rb = ResourceBundle.getBundle("ValidationMessages");
 
@@ -87,7 +87,7 @@ public class ValidatorTestUser {
     }
 
     @Test
-    public void testEsLanguage() {
+     void testEsLanguage() {
         Locale.setDefault(new Locale("es"));
         ResourceBundle rb = ResourceBundle.getBundle("ValidationMessages_es");
 

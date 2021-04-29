@@ -1,36 +1,56 @@
 package com.com.online.store.online.store.controller;
 
 
-import com.com.online.store.online.store.dto.OrderDto;
-import com.com.online.store.online.store.service.PaypalService;
+import com.com.online.store.online.store.dto.CancelStripePaymentDto;
+import com.com.online.store.online.store.dto.PaymentDto;
+import com.com.online.store.online.store.exception.ResourceBadRequestException;
+import com.com.online.store.online.store.exception.ResourceNotFoundException;
 import com.com.online.store.online.store.service.StripeService;
-import com.com.online.store.online.store.util.Constants;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
-
 
 @RequestMapping(StripeController.URL_BASE)
 @Slf4j
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class StripeController {
-    public static final String URL_BASE = "/api/v1/payments/id";
+    public static final String URL_BASE = "/api/v1/payment_intents";
     private final StripeService stripeService;
-    private final PaypalService paypalService;
 
-    protected Optional<PaymentIntent> createPayment(OrderDto orderDto) {
-        return stripeService.createPayment(orderDto.getPayment().stripeToEntity());
+
+    @PostMapping
+    public ResponseEntity<String> createPayment(@Valid @RequestBody  PaymentDto paymentDto) throws ResourceBadRequestException {
+        Optional<PaymentIntent> paymentResponseOpt =  stripeService.createPayment(paymentDto.stripeToEntity());
+        if(paymentResponseOpt.isEmpty()){
+            throw new ResourceBadRequestException("Stripe does not create  intent object");
+        }
+        return new ResponseEntity<>(paymentResponseOpt.get().toJson(),HttpStatus.OK);
     }
-    protected PaymentIntent confirmPayment(String paymentId) throws StripeException {
-       return stripeService.confirmPayment(paymentId);
+
+    @PostMapping("/{paymentId}/confirm")
+    public ResponseEntity<String> confirmPayment(@PathVariable("paymentId") String paymentId) throws StripeException, ResourceBadRequestException, ResourceNotFoundException {
+        Optional<PaymentIntent> paymentResponse = stripeService.confirmPayment(paymentId);
+        if(paymentResponse.isEmpty()){
+            throw new ResourceBadRequestException("Stripe does not confirm payment ");
+        }
+        String paymentStr = paymentResponse.get().toJson();
+        return new ResponseEntity<>(paymentStr, HttpStatus.OK);
     }
-    protected PaymentIntent cancelPayment(String paymentId) throws StripeException {
-        return stripeService.cancelPayment(paymentId);
+
+    @PostMapping("/{paymentId}/cancel")
+    public ResponseEntity<String> cancelPayment(@PathVariable("paymentId") String paymentId,@RequestBody CancelStripePaymentDto cancelStripeDto) throws StripeException, ResourceBadRequestException, ResourceNotFoundException {
+        Optional<PaymentIntent> paymentResponse = stripeService.cancelPayment(paymentId,cancelStripeDto);
+        if(paymentResponse.isEmpty()){
+            throw new ResourceBadRequestException("Stripe does not cancel payment ");
+        }
+        return new ResponseEntity<>(paymentResponse.get().toJson(), HttpStatus.OK);
     }
 }

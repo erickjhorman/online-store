@@ -1,5 +1,8 @@
 package com.com.online.store.online.store.util;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Constants {
 
     public static final String STRIPE_PLATFORM = "STRIPE";

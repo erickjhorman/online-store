@@ -10,9 +10,9 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Random;
+
 
 @Entity
 @Data
@@ -22,7 +22,7 @@ import java.util.Random;
 @Builder
 public class Payment implements Serializable {
 
-    private static final long serialVersionUID = new Random().nextLong() + 1;
+    private static final long serialVersionUID = new SecureRandom().nextLong() + 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,12 +36,6 @@ public class Payment implements Serializable {
     @Range(min = 1, max = 100, message = "the amount must be between 1 and 100")
     @Positive
     private Integer amount;
-
-    @NotEmpty
-    @Column(nullable = false)
-    @Range(min = 1, max = 1000000)
-    @Positive
-    private Integer total;
 
     @Column(name = "created_at")
     @Past(message = "Date may not in the past")

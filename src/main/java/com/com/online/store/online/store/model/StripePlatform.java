@@ -9,15 +9,16 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Past;
+import java.io.Serializable;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.util.Random;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor @Builder
-public class StripePlatform {
-    private static final long serialVersionUID = new Random().nextLong() + 1;
+public class StripePlatform implements Serializable {
+    private static final long serialVersionUID = new SecureRandom().nextLong() + 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

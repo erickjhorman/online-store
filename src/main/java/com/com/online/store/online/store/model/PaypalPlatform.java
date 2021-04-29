@@ -6,14 +6,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Random;
+import java.io.Serializable;
+import java.security.SecureRandom;
+
 
 @Entity
 @Getter @Setter
 @AllArgsConstructor @Builder
-public class PaypalPlatform {
+public class PaypalPlatform implements Serializable {
 
-    private static final long serialVersionUID = new Random().nextLong() + 1;
+    private static final long serialVersionUID = new SecureRandom().nextLong() + 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

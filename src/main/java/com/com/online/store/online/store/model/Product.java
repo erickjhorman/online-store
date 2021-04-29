@@ -1,7 +1,5 @@
 package com.com.online.store.online.store.model;
 
-import com.com.online.store.online.store.dto.OrderDto;
-import com.com.online.store.online.store.dto.SubProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +9,8 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Random;
 
 @Entity
 @Data
@@ -22,7 +19,7 @@ import java.util.Random;
 @Table(name = "TDT_PRODUCT")
 public class Product implements Serializable {
 
-    private static final long serialVersionUID = new Random().nextLong() + 1;
+    private static final long serialVersionUID = new SecureRandom().nextLong() + 1;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_product")

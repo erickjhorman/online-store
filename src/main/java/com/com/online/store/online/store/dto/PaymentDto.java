@@ -3,10 +3,7 @@ package com.com.online.store.online.store.dto;
 import com.com.online.store.online.store.model.PaypalPlatform;
 import com.com.online.store.online.store.model.StripePlatform;
 import com.com.online.store.online.store.util.Currency;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -15,6 +12,7 @@ import javax.validation.constraints.Positive;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public  class PaymentDto {
     @NotNull
     @Positive
@@ -28,11 +26,14 @@ public  class PaymentDto {
     private String paymentPlatform;
     private String secretKey;
 
+    private String cancellationReason;
+
     public StripePlatform stripeToEntity(){
       return  StripePlatform.builder()
                 .totalOrder(getTotalOrder())
                 .description(getDescription())
                 .stripeCurrency(getCurrency())
+                .secretKey(getSecretKey())
               .build();
     }
 
