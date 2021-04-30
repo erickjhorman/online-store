@@ -1,10 +1,13 @@
 package com.com.online.store.online.store.dto;
 
 import com.com.online.store.online.store.model.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
@@ -32,7 +35,7 @@ public class ProductDto {
     private Integer price;
 
     @Past(message = "Date may not in the past")
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
     @Future(message = "{user.updated_at.past}")
     private LocalDateTime updateAt;

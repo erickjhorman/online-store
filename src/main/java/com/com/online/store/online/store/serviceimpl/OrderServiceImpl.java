@@ -20,4 +20,9 @@ public class OrderServiceImpl implements OrderService {
     public Order saveOrder(Order order) {
         return orderRepository.save(order);
     }
+
+    @Override
+    public Order saveOrderMessageQueue(Order order) {
+        return orderRepository.save(order);
+    }
 }
