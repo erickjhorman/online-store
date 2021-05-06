@@ -1,7 +1,7 @@
 package com.com.online.store.online.store.controller;
 
 import com.com.online.store.online.store.dto.UserDto;
-import com.com.online.store.online.store.service.UserService;
+import com.com.online.store.online.store.service.IUserService;
 import com.com.online.store.online.store.util.GlobalValidations;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class UserController {
     public static final String URL_BASE = "/api/v1/users";
 
-    private final UserService userService;
+    private final IUserService userService;
 
     @PostMapping
     public void saveUser(@Valid @RequestBody UserDto userDto, BindingResult result) {

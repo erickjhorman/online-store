@@ -5,7 +5,7 @@ import com.com.online.store.online.store.dto.CancelStripePaymentDto;
 import com.com.online.store.online.store.dto.PaymentDto;
 import com.com.online.store.online.store.exception.ResourceBadRequestException;
 import com.com.online.store.online.store.exception.ResourceNotFoundException;
-import com.com.online.store.online.store.service.StripeService;
+import com.com.online.store.online.store.service.IStripeService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import java.util.Optional;
 @RestController
 public class StripeController {
     public static final String URL_BASE = "/api/v1/payment_intents";
-    private final StripeService stripeService;
+    private final IStripeService stripeService;
 
 
     @PostMapping

@@ -3,7 +3,7 @@ package com.com.online.store.online.store.serviceimpl;
 import com.com.online.store.online.store.dto.CancelStripePaymentDto;
 import com.com.online.store.online.store.exception.ResourceNotFoundException;
 import com.com.online.store.online.store.model.StripePlatform;
-import com.com.online.store.online.store.service.StripeService;
+import com.com.online.store.online.store.service.IStripeService;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -16,7 +16,7 @@ import java.util.Optional;
 import static java.util.Optional.*;
 @Service
 @Slf4j
-public class StripeServiceImpl implements StripeService {
+public class StripeServiceImpl implements IStripeService {
 
     @Value("${stripe.key.secret}")
     String secretKey;

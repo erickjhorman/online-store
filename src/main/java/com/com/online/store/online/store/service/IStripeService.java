@@ -8,7 +8,7 @@ import com.stripe.model.PaymentIntent;
 
 import java.util.Optional;
 
-public interface StripeService {
+public interface IStripeService {
     Optional<PaymentIntent> createPayment(StripePlatform stripePlatform);
     Optional<PaymentIntent> confirmPayment(String paymentId) throws StripeException, ResourceNotFoundException;
     Optional<PaymentIntent> cancelPayment(String paymentId, CancelStripePaymentDto cancelStripePaymentDto) throws StripeException, ResourceNotFoundException;

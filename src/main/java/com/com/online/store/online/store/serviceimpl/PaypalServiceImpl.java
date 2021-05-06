@@ -1,7 +1,5 @@
 package com.com.online.store.online.store.serviceimpl;
 
-import com.com.online.store.online.store.model.PaypalPlatform;
-import com.com.online.store.online.store.service.PaypalService;
 import org.springframework.stereotype.Service;
 
 @Service

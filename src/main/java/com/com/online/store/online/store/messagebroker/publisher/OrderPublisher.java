@@ -1,12 +1,12 @@
 package com.com.online.store.online.store.messagebroker.publisher;
 
 import com.com.online.store.online.store.controller.OrderController;
+import com.com.online.store.online.store.dto.OrderResponseDto;
 import com.com.online.store.online.store.messagebroker.dto.OrderDtoResponse;
 import com.com.online.store.online.store.messagebroker.dto.OrderMessageQueueDto;
-import com.com.online.store.online.store.dto.OrderResponseDto;
 import com.com.online.store.online.store.messagebroker.dto.OrderStatus;
 import com.com.online.store.online.store.model.Order;
-import com.com.online.store.online.store.service.OrderService;
+import com.com.online.store.online.store.service.IOrderService;
 import com.com.online.store.online.store.util.Constants;
 import com.com.online.store.online.store.util.GlobalValidations;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ import javax.validation.Valid;
 public class OrderPublisher {
     public static final String URL_BASE = "/api/v1/orders";
     private final RabbitTemplate rabbitTemplate;
-    private final OrderService orderService;
+    private final IOrderService orderService;
 
     @PostMapping
     public ResponseEntity<OrderResponseDto> saveOrderMessageQueue(@Valid @RequestBody OrderMessageQueueDto orderDto, BindingResult result) {
@@ -39,9 +39,10 @@ public class OrderPublisher {
         log.info(orderDto.toEntity().toString());
         Order orderSaved = orderService.saveOrderMessageQueue(orderDto.toEntity());
         Long orderId = orderSaved.getIdOrder();
-        OrderStatus orderStatus = new OrderStatus(new OrderDtoResponse("04-30-2024","04-30-2021"), "PROCESS", "order placed successfully " + orderId);
+        OrderStatus orderStatus = new OrderStatus(new OrderDtoResponse(orderDto.getUserId().getEmail(),  "04-30-2024","04-30-2021"), "PROCESS", "order placed successfully " + orderId);
         log.info("Here");
         rabbitTemplate.convertAndSend(Constants.ORDER_EXCHANGE, Constants.ORDER_ROUTING_KEY, orderStatus);
+
         return ResponseEntity.ok(new OrderResponseDto(orderId));
     }
 

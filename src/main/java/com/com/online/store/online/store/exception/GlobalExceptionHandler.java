@@ -2,6 +2,7 @@ package com.com.online.store.online.store.exception;
 
 
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,6 +14,7 @@ import java.util.Date;
 
 @RestControllerAdvice
 @NoArgsConstructor
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
@@ -29,6 +31,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceBadRequestException.class)
     public ResponseEntity<ErrorDetails> resourceBadRequestException(ResourceBadRequestException ex, WebRequest request) {
+        ErrorDetails errorResponse = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceMailException.class)
+    public ResponseEntity<ErrorDetails> resourceMailException(ResourceMailException ex, WebRequest request) {
         ErrorDetails errorResponse = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }

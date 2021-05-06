@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Online store</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="css/main.css" th:href="@{css/main.css}"/>
+</head>
+<body>
+<p>
+    <img th:src="|cid:${imageResourceName}|" />
+</p>
+<h1>Thanks for your purchase</h1><span th:text="${userName}"></span>
+<p th:text="${message}"></p>
+</body>
+</html>
