@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
     @Test
     @DisplayName("Should validate not null fields")
-     testNotNull() {
+    void testNotNull() {
         Set<ConstraintViolation<User>> violations = validator.validate(userObj());
         assertFalse(violations.isEmpty());
     }
