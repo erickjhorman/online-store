@@ -21,6 +21,8 @@ class ExampleRestController {
     @GetMapping("/hello")
     @PreAuthorize("hasAuthority('Admin')")
     String helloUser(@AuthenticationPrincipal Principal user) {
+        System.out.println("I added for testing");
+
         return "Hello " + user;
     }
 
