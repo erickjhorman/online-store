@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
+@ToString
 public class ErrorDetails {
     private Date timestamp;
     private String message;

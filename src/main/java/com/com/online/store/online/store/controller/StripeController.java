@@ -30,9 +30,9 @@ public class StripeController {
     public ResponseEntity<String> createPayment(@Valid @RequestBody  PaymentDto paymentDto) throws ResourceBadRequestException {
         Optional<PaymentIntent> paymentResponseOpt =  stripeService.createPayment(paymentDto.stripeToEntity());
         if(paymentResponseOpt.isEmpty()){
-            throw new ResourceBadRequestException("Stripe does not create  intent object");
+            throw new ResourceBadRequestException("Stripe does not create intent object");
         }
-        return new ResponseEntity<>(paymentResponseOpt.get().toJson(),HttpStatus.OK);
+        return new ResponseEntity<>(paymentResponseOpt.get().toJson(),HttpStatus.CREATED);
     }
 
     @PostMapping("/{paymentId}/confirm")
@@ -42,7 +42,7 @@ public class StripeController {
             throw new ResourceBadRequestException("Stripe does not confirm payment ");
         }
         String paymentStr = paymentResponse.get().toJson();
-        return new ResponseEntity<>(paymentStr, HttpStatus.OK);
+        return new ResponseEntity<>(paymentStr, HttpStatus.CREATED);
     }
 
     @PostMapping("/{paymentId}/cancel")

@@ -29,6 +29,7 @@ public class User implements Serializable {
 
     private String name;
 
+    @Email
     private String email;
 
     private String password;
@@ -38,6 +39,8 @@ public class User implements Serializable {
 
     @Column(name = "birthday")
     private LocalDate birthday;
+
+    private String test;
 
     @Past(message = "{user.created_at.past}")
     @Column(name = "created_at")
