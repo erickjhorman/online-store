@@ -118,6 +118,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>online-store</finalName>
     </build>
 
 </project>
