@@ -16,7 +16,7 @@ import java.security.Principal;
 @RequiredArgsConstructor
 class ExampleRestController {
 
-    private final OAuth2AuthorizedClientService authorizedClientService;
+    //private final OAuth2AuthorizedClientService authorizedClientService;
 
     @GetMapping("/hello")
     @PreAuthorize("hasAuthority('Admin')")
